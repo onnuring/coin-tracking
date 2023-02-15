@@ -1,5 +1,11 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, createGlobalStyle } from "styled-components";
 
+const GlobalStyle = createGlobalStyle`
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    `;
 const Father = styled.div`
   display: flex;
   margin-bottom: 20px;
@@ -61,9 +67,23 @@ const Box = styled.div`
   }
 `;
 
+const ThemeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${(props) => props.theme.backgroundColor};
+`;
+const Title = styled.h1`
+  color: ${(props) => props.theme.textColor};
+`;
+
 function App() {
   return (
-    <>
+    <ThemeWrapper>
+      <GlobalStyle />
       <Father>
         <ChildBox bgColor="teal" />
         <Circle bgColor="tomato" />
@@ -84,7 +104,9 @@ function App() {
         </Box>
         <Emoji>🤡</Emoji>
       </Wrapper>
-    </>
+
+      <Title>Hello</Title>
+    </ThemeWrapper>
   );
 }
 
